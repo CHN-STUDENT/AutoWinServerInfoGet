@@ -12,6 +12,13 @@ del info.txt
 del info.old
 
 echo %title%
+echo ----------------------------------- 
+For /F "UseBackQ Tokens=1-4" %%A In (
+    `Powershell "$OS=GWmi Win32_OperatingSystem;$UP=(Get-Date)-"^
+    "($OS.ConvertToDateTime($OS.LastBootUpTime));$DO='d='+$UP.Days+"^
+    "' h='+$UP.Hours+' n='+$UP.Minutes+' s='+$UP.Seconds;Echo $DO"`) Do (
+    Set "%%A"&Set "%%B"&Set "%%C"&Set "%%D")
+echo 系统运行时间: %d% 天, %h% 小时, %n% 分钟, %s% 秒. 
 echo -----------------------------------
 cscript //nologo cpu.vbs 
 echo -----------------------------------
@@ -23,7 +30,15 @@ systeminfo
 echo ----------------------------------- 
 echo 另存信息到文件中，请等待...
 
+
 echo %title% >> info.txt
+echo ----------------------------------- >> info.txt
+For /F "UseBackQ Tokens=1-4" %%A In (
+    `Powershell "$OS=GWmi Win32_OperatingSystem;$UP=(Get-Date)-"^
+    "($OS.ConvertToDateTime($OS.LastBootUpTime));$DO='d='+$UP.Days+"^
+    "' h='+$UP.Hours+' n='+$UP.Minutes+' s='+$UP.Seconds;Echo $DO"`) Do (
+    Set "%%A"&Set "%%B"&Set "%%C"&Set "%%D")
+echo 系统运行时间: %d% 天, %h% 小时, %n% 分钟, %s% 秒. >> info.txt
 echo ----------------------------------- >> info.txt
 cscript //nologo cpu.vbs >> info.txt
 echo ----------------------------------- >> info.txt
