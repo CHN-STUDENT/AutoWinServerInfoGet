@@ -11,7 +11,7 @@ Function GetDriversInfo()
    Set drvObj = fsoobj.Drives
    For Each D In drvObj
        Err.Clear
-       If D.DriveLetter <> "A" and D.DriveType = 2 Then
+       If D.DriveLetter <> "A" Then
            If D.isReady Then
                GetDriversInfo = GetDriversInfo & "分区:" & D.DriveLetter & vbCrLf
                GetDriversInfo = GetDriversInfo & "可用空间:" & cSize(D.FreeSpace) & vbCrLf

@@ -1,3 +1,3 @@
 On Error Resume Next
 Set objProc  = GetObject("winmgmts:\\.\root\cimv2:win32_processor='cpu0'")
-Wscript.Echo "CPU å ç”¨ç‡ï¼š" & objProc.LoadPercentage & "%"
+Wscript.Echo "CPU Õ¼ÓÃÂÊ£º" & objProc.LoadPercentage & "%"
